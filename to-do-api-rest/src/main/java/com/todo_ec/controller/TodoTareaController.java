@@ -1,4 +1,4 @@
 package com.todo_ec.controller;
 
-public class tareasController {
+public class TodoTareaController {
 }
