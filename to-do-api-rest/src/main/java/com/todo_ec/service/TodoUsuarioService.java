@@ -11,6 +11,8 @@ public interface TodoUsuarioService {
     //Crear y Actualizar Usuario
     TodoUsuario save(TodoUsuarioDTO todoUsuarioDTO);
 
+    TodoUsuario update(TodoUsuarioDTO todoUsuarioDTO);
+
     Iterable<TodoUsuario> findAll();
 
     TodoUsuario findById(Integer id);
