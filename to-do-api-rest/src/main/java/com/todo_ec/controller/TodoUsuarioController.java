@@ -29,15 +29,15 @@ public class TodoUsuarioController {
     //Update User
     @PutMapping("/usuario")
     public ResponseEntity<?> update(@RequestBody TodoUsuarioDTO usuarioDTO) {
-        TodoUsuario updatedUser = usuarioService.save(usuarioDTO);
-        // Usamos HttpStatus.OK para indicar que la operación fue una actualización exitosa.
+        TodoUsuario updatedUser = usuarioService.update(usuarioDTO);
+        // Usamos HttpStatus.CREATED para indicar que la operación fue una actualización exitosa.
         return new ResponseEntity<>(updatedUser, HttpStatus.CREATED);
     }
 
 
     //Delete User ById
     @DeleteMapping("/usuario/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable Integer id) {
         usuarioService.deleteById(id);
     }
