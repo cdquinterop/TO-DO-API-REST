@@ -1,8 +1,12 @@
 package com.todo_ec.model.DTOs;
 
+import jakarta.persistence.Column;
+
 public class TodoUsuarioDTO {
     private Integer idUsuario;
+    @Column(name = "USUARIO", nullable = false,  unique = true, length = 200)
     private String usuario;
+    @Column(name = "CORREO", nullable = false,  unique = true, length = 200)
     private String correo;
     private String contrasena;
 
