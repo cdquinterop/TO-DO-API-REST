@@ -29,6 +29,12 @@ public class TodoEstadoController {
     public Iterable<TodoEstado> showAllUser(){
         return todoEstadoService.findAll();
     }
+    @GetMapping("/estado/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public  TodoEstado showById(@PathVariable Integer id) {
+        return todoEstadoService.findById(id);
+    }
+
     //Update User
     @PutMapping("/estado")
     public ResponseEntity<?> update(@RequestBody TodoEstadoDTO todoEstadoDTO) {

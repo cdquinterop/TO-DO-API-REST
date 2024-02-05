@@ -17,7 +17,7 @@ public class TodoUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_USUARIO")
-    private Long idUsuario;
+    private Integer idUsuario;
 
     @Column(name = "USUARIO", nullable = false, length = 200)
     private String usuario;
@@ -33,7 +33,7 @@ public class TodoUsuario {
     public TodoUsuario() {
     }
 
-    public TodoUsuario(Long idUsuario, String usuario, String correo, String contrasena) {
+    public TodoUsuario(Integer idUsuario, String usuario, String correo, String contrasena) {
         this.idUsuario = idUsuario;
         this.usuario = usuario;
         this.correo = correo;

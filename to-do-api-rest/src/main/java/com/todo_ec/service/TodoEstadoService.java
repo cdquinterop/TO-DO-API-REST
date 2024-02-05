@@ -7,7 +7,6 @@ import com.todo_ec.model.entity.TodoEstado;
 import com.todo_ec.model.entity.TodoUsuario;
 
 public interface TodoEstadoService {
-
     TodoEstado save (TodoEstadoDTO todoEstadoDTO);
     TodoEstado update(TodoEstadoDTO todoEstadoDTO);
 
