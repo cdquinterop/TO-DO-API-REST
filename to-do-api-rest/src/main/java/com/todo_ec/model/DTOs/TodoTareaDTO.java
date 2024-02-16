@@ -1,4 +1,5 @@
 package com.todo_ec.model.DTOs;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class TodoTareaDTO {
@@ -7,14 +8,14 @@ public class TodoTareaDTO {
     private Integer idEstado;
     private String titulo;
     private String descripcion;
-    private Date fechaInicio;
-    private Date fechaFin;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
 
     // Constructor vacío
     public TodoTareaDTO() {}
 
     // Constructor con parámetros
-    public TodoTareaDTO(Integer idTarea, Integer idUsuario, Integer idEstado, String titulo, String descripcion, Date fechaInicio, Date fechaFin) {
+    public TodoTareaDTO(Integer idTarea, Integer idUsuario, Integer idEstado, String titulo, String descripcion, LocalDate fechaInicio, LocalDate fechaFin) {
         this.idTarea = idTarea;
         this.idUsuario = idUsuario;
         this.idEstado = idEstado;
@@ -66,19 +67,19 @@ public class TodoTareaDTO {
         this.descripcion = descripcion;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 }

@@ -11,6 +11,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.FetchType;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 @Setter
@@ -30,10 +32,10 @@ public class TodoTarea {
     private String descripcion;
 
     @Column(name = "FECHA_INICIO")
-    private Date fechaInicio;
+    private LocalDate fechaInicio;
 
     @Column(name = "FECHA_FIN")
-    private Date fechaFin;
+    private LocalDate fechaFin;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_USUARIO")
@@ -49,7 +51,7 @@ public class TodoTarea {
     public TodoTarea() {
     }
 
-    public TodoTarea(Long idTarea, String titulo, String descripcion, Date fechaInicio, Date fechaFin, TodoUsuario todoUsuario, TodoEstado todoEstado) {
+    public TodoTarea(Long idTarea, String titulo, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, TodoUsuario todoUsuario, TodoEstado todoEstado) {
         this.idTarea = idTarea;
         this.titulo = titulo;
         this.descripcion = descripcion;

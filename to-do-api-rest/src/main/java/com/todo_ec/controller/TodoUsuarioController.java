@@ -15,19 +15,19 @@ public class TodoUsuarioController {
     private TodoUsuarioService  usuarioService ;
 
     //Create User
-    @PostMapping("/usuario")
+    @PostMapping("/user")
     public ResponseEntity<?> create(@RequestBody TodoUsuarioDTO usuarioDTO) {
         TodoUsuario savedUser = usuarioService.save(usuarioDTO);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
     //Show All User
-    @GetMapping("/usuarios")
+    @GetMapping("/users")
     @ResponseStatus(HttpStatus.OK)
     public Iterable<TodoUsuario> showAllUser(){
         return usuarioService.findAll();
     }
     //Update User
-    @PutMapping("/usuario")
+    @PutMapping("/user")
     public ResponseEntity<?> update(@RequestBody TodoUsuarioDTO usuarioDTO) {
         TodoUsuario updatedUser = usuarioService.update(usuarioDTO);
         // Usamos HttpStatus.CREATED para indicar que la operación fue una actualización exitosa.
@@ -36,7 +36,7 @@ public class TodoUsuarioController {
 
 
     //Delete User ById
-    @DeleteMapping("/usuario/{id}")
+    @DeleteMapping("/user/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable Integer id) {
         usuarioService.deleteById(id);
