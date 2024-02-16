@@ -13,6 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class TodoUsuarioImpl implements TodoUsuarioService {
     @Autowired
@@ -64,6 +66,7 @@ public class TodoUsuarioImpl implements TodoUsuarioService {
     public Iterable<TodoUsuario> findAll() {
         return todoUsuarioRepository.findAll();
     }
+
 
     @Override
     public TodoUsuario findById(Integer id) {

@@ -5,6 +5,8 @@ import com.todo_ec.model.DTOs.TodoUsuarioDTO;
 import com.todo_ec.model.entity.TodoUsuario;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 public interface TodoUsuarioService {
 
@@ -14,6 +16,7 @@ public interface TodoUsuarioService {
     TodoUsuario update(TodoUsuarioDTO todoUsuarioDTO);
 
     Iterable<TodoUsuario> findAll();
+
 
     TodoUsuario findById(Integer id);
 
