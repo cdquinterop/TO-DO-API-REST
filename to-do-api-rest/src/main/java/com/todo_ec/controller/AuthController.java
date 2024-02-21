@@ -9,6 +9,7 @@ import com.todo_ec.security.response.JwtResponse;
 import com.todo_ec.security.services.TokenBlacklist;
 import com.todo_ec.security.services.UserDetailsImpl;
 import com.todo_ec.service.TodoUsuarioService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,18 +57,32 @@ public class AuthController {
     }
 
     @PostMapping("login")
-    public ResponseEntity<?> Login( @Validated @RequestBody TodoLoginDTO todoLoginDTO){
+    public ResponseEntity<?> login(@Validated @RequestBody TodoLoginDTO todoLoginDTO) {
+        Authentication authentication;
+        String usernameOrEmail = todoLoginDTO.getTodoUsuario();
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(todoLoginDTO.getTodoUsuario(),todoLoginDTO.getTodoContrasena()));
-          SecurityContextHolder.getContext().setAuthentication(authentication);
+        // Determine if the input is a username or email
+        if (usernameOrEmail.contains("@")) {
+            // Input is an email, find user by email
+            TodoUsuario todoUsuario = todoUsuarioRepository.findByCorreo(todoLoginDTO.getTodoUsuario())
+                               .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado con ID: " + todoLoginDTO.getTodoUsuario()));
+            System.out.println(todoUsuario.getCorreo());
+            authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(todoLoginDTO.getTodoUsuario(), todoLoginDTO.getTodoContrasena()));
+        } else {
+            // Input is a username, find user by username
+            authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(usernameOrEmail, todoLoginDTO.getTodoContrasena()));
+        }
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = jwtUtils.generateJwtToken(authentication);
-              UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-               return ResponseEntity.ok(new JwtResponse(jwt));
-
+        return ResponseEntity.ok(new JwtResponse(jwt));
     }
+
 
     @PostMapping("/user")
     public ResponseEntity<?> create(@RequestBody TodoUsuarioDTO usuarioDTO) {
