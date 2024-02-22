@@ -10,10 +10,11 @@ public interface TodoEstadoService {
     TodoEstado save (TodoEstadoDTO todoEstadoDTO);
     TodoEstado update(TodoEstadoDTO todoEstadoDTO);
 
-
     Iterable<TodoEstado> findAll();
 
     TodoEstado findById(Integer id);
+
+    TodoEstadoDTO statusDTO(TodoEstado todoEstado);
 
     void deleteById(Integer id);
 }

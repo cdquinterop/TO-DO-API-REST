@@ -1,11 +1,11 @@
 package com.todo_ec.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
-@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TODO_USUARIO", uniqueConstraints = {
         @UniqueConstraint( columnNames = "USUARIO" ),
@@ -25,19 +25,6 @@ public class TodoUsuario {
 
     @Column(name = "CONTRASENA", nullable = false, length = 200)
     private String contrasena;
-
-    // Constructores, getters y setters
-
-    public TodoUsuario() {
-    }
-
-    public TodoUsuario(Integer idUsuario, String usuario, String correo, String contrasena) {
-        this.idUsuario = idUsuario;
-        this.usuario = usuario;
-        this.correo = correo;
-        this.contrasena = contrasena;
-    }
-
 
 
 }

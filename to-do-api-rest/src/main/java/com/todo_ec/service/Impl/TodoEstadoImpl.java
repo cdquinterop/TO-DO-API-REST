@@ -1,6 +1,7 @@
 package com.todo_ec.service.Impl;
 
 import com.todo_ec.model.DTOs.TodoEstadoDTO;
+import com.todo_ec.model.DTOs.TodoTareaDTO;
 import com.todo_ec.model.entity.TodoEstado;
 import com.todo_ec.model.repository.TodoEstadoRepository;
 import com.todo_ec.service.TodoEstadoService;
@@ -9,6 +10,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.NoSuchElementException;
 
 @Service
 public class TodoEstadoImpl implements TodoEstadoService {
@@ -48,6 +51,19 @@ public class TodoEstadoImpl implements TodoEstadoService {
     @Override
     public TodoEstado findById(Integer id) {
         return todoEstadoRepository.findById(id).orElse(null);
+    }
+
+    @Transactional
+    @Override
+    public TodoEstadoDTO statusDTO(TodoEstado todoEstado) {
+        TodoEstadoDTO todoEstadoDTO = null;
+        try {
+            todoEstadoDTO = new TodoEstadoDTO();
+            BeanUtils.copyProperties(todoEstado, todoEstadoDTO);
+        } catch (Exception e) {
+            throw e;
+        }
+        return todoEstadoDTO;
     }
 
     @Transactional

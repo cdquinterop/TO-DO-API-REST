@@ -1,8 +1,6 @@
 package com.todo_ec.service.Impl;
 
-import com.todo_ec.model.DTOs.TodoEstadoDTO;
 import com.todo_ec.model.DTOs.TodoUsuarioDTO;
-import com.todo_ec.model.entity.TodoEstado;
 import com.todo_ec.model.repository.TodoUsuarioRepository;
 import com.todo_ec.model.entity.TodoUsuario;
 import com.todo_ec.service.TodoUsuarioService;
@@ -12,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 public class TodoUsuarioImpl implements TodoUsuarioService {
@@ -72,6 +68,7 @@ public class TodoUsuarioImpl implements TodoUsuarioService {
     public TodoUsuario findById(Integer id) {
         return todoUsuarioRepository.findById(id).orElse(null); //me retorna null cuando no se encuentra el dato
     }
+
 
     @Transactional
     @Override

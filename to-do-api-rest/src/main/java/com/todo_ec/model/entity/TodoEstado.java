@@ -6,14 +6,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
-@Getter
+import java.io.Serializable;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TODO_ESTADO")
-public class TodoEstado {
+public class TodoEstado implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ESTADO")
@@ -22,13 +24,5 @@ public class TodoEstado {
     @Column(name = "DESCRIPCION", nullable = false, length = 50)
     private String descripcion;
 
-    // Constructores, getters y setters
 
-    public TodoEstado() {
-    }
-
-    public TodoEstado(Integer idEstado, String descripcion) {
-        this.idEstado = idEstado;
-        this.descripcion = descripcion;
-    }
 }

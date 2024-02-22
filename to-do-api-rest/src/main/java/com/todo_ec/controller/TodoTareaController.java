@@ -1,5 +1,6 @@
 package com.todo_ec.controller;
 
+import com.todo_ec.model.DTOs.TodoEstadoDTO;
 import com.todo_ec.model.DTOs.TodoTareaDTO;
 import com.todo_ec.model.DTOs.TodoUsuarioDTO;
 import com.todo_ec.model.entity.TodoTarea;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 
 @RestController
@@ -28,9 +30,9 @@ public class TodoTareaController {
     }
 
     //Create User
-    @PostMapping("tarea")
-    public ResponseEntity<?> saveTask(@RequestBody TodoTareaDTO tareaDTO) {
-        TodoTarea savedTask = todoTareaService.saveTask(tareaDTO);
+    @PostMapping("tarea/{idUsuario}/{idEstado}")
+    public ResponseEntity<?> saveTask(@PathVariable Integer idUsuario, @RequestBody TodoTareaDTO tareaDTO, @PathVariable Integer idEstado) {
+        TodoTareaDTO savedTask = todoTareaService.saveTask(idUsuario, tareaDTO, idEstado);
         return new ResponseEntity<>(savedTask, HttpStatus.CREATED);
     }
 

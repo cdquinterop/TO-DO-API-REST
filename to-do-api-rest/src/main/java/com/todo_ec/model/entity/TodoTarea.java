@@ -1,6 +1,7 @@
 package com.todo_ec.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.todo_ec.model.DTOs.TodoUsuarioDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class TodoTarea implements Serializable {
     @Column(name = "ID_TAREA")
     private Integer idTarea;
 
-    @Column(name = "TITULO", nullable = false, length = 300)
+    @Column(name = "TITULO", length = 300)
     private String titulo;
 
     @Column(name = "DESCRIPCION", length = 500)
@@ -40,14 +41,12 @@ public class TodoTarea implements Serializable {
     @Column(name = "FECHA_FIN")
     private LocalDate fechaFin;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "ID_USUARIO")
-    @JsonIgnore
     private TodoUsuario todoUsuario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "ID_ESTADO")
-    @JsonIgnore
     private TodoEstado todoEstado;
 
 }

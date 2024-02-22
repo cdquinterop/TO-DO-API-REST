@@ -1,9 +1,6 @@
 package com.todo_ec.model.DTOs;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -11,6 +8,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @ToString
 @AllArgsConstructor
+@Builder
 public class TodoUsuarioDTO implements Serializable {
     private Integer idUsuario;
     private String usuario;
