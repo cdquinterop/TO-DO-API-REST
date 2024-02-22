@@ -12,6 +12,8 @@ public interface TodoUsuarioRepository extends CrudRepository<TodoUsuario, Integ
 
     Optional<TodoUsuario> findByUsuario(String usuario);
 
+    Optional<TodoUsuario> findByCorreo(String correo);
+
     Boolean existsByUsuario(String usuario);
     Boolean existsByCorreo(String correo);
 }

@@ -20,5 +20,6 @@ public interface TodoUsuarioService {
 
     TodoUsuario findById(Integer id);
 
+
     void deleteById(Integer id);
 }
