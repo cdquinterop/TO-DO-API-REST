@@ -96,4 +96,9 @@ public class TodoTareaImpl implements TodoTareaService{
     public void deleteTaskById(Integer id) {
         todoTareaRepository.deleteById(id);
     }
+
+    @Transactional
+    public List<TodoTarea> TaskUserById(TodoUsuario todoUsuario){
+        return todoTareaRepository.findByTodoUsuario(todoUsuario);
+    }
 }

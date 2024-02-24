@@ -11,4 +11,5 @@ import java.util.List;
 
 @Repository
 public interface TodoTareaRepository extends CrudRepository <TodoTarea, Integer> {
+    List<TodoTarea> findByTodoUsuario(TodoUsuario todoUsuario);
 }

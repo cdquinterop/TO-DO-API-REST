@@ -5,7 +5,10 @@ import com.todo_ec.model.DTOs.TodoTareaDTO;
 import com.todo_ec.model.DTOs.TodoUsuarioDTO;
 import com.todo_ec.model.entity.TodoTarea;
 import com.todo_ec.model.entity.TodoUsuario;
+import com.todo_ec.model.repository.TodoTareaRepository;
+import com.todo_ec.model.repository.TodoUsuarioRepository;
 import com.todo_ec.service.TodoTareaService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,10 @@ public class TodoTareaController {
 
     @Autowired
     private TodoTareaService todoTareaService;
+    @Autowired
+    private TodoUsuarioRepository todoUsuarioRepository;
+    @Autowired
+    private TodoTareaRepository todoTareaRepository;
 
     @GetMapping("tarea")
     public Iterable<TodoTarea> findAllTask() {
@@ -47,4 +54,14 @@ public class TodoTareaController {
         return "Successfully  deleted";
     }
 
+    @GetMapping("/tareas/{idUsuario}")
+    public ResponseEntity<List<TodoTarea>> getAllTasksByUser(@PathVariable Integer idUsuario) {
+        // Aquí deberías obtener el usuario correspondiente al idUsuario
+        TodoUsuario todoUsuario = todoUsuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado con ID: " + idUsuario));
+
+                List<TodoTarea> tareas = todoTareaRepository.findByTodoUsuario(todoUsuario);
+
+        return new ResponseEntity<>(tareas, HttpStatus.OK);
+    }
 }
